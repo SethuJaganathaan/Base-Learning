@@ -1,9 +1,10 @@
-﻿using Base_Learning.Shapes;
+﻿using Base_Learning.Abstract;
+using Base_Learning.Shapes;
 using System.Drawing;
 
 class Program
 {
-    static void Main(string[] args)
+    static void main(string[] args)
     {
         Rectangles rect = new Rectangles(10, 10);
         Circle circle = new Circle(2);
@@ -17,6 +18,19 @@ class Program
         foreach (var shape in shapes)
         {
             Console.WriteLine($"Area: {shape.CalculateArea()}");
+        }
+    }
+
+    static void Main(string[] args)
+    {
+        ARectangle aRect = new ARectangle(10, 20);
+        ACircle aCircle = new ACircle(3);
+
+        IAlphaShape[] Ashapes = { aRect, aCircle };
+        foreach (var shape in Ashapes)
+        {
+            shape.PrintDescription();
+            Console.WriteLine($"Area : {shape.CalculateArea()}");
         }
     }
 }
