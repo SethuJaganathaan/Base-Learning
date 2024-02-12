@@ -1,7 +1,7 @@
 ﻿using Base_Learning.Abstract;
 using Base_Learning.ClassAndObject;
 using Base_Learning.Shapes;
-using System.Drawing;
+using Base_Learning.Statics;
 
 class Program
 {
@@ -35,11 +35,21 @@ class Program
         }
     }
 
-    static void Main(string[] args)
+    static void nain(string[] args)
     {
         ClassAndObj classandobj = new ClassAndObj("Shelby", 35);
         ShapeArea shapearea = new ShapeArea(50,50);
         Console.WriteLine($"Area of shape is {shapearea.AreaCalculate()}");
         classandobj.Introduce();
+    }
+
+    static void Main(string[] args)
+    {
+        Console.WriteLine(Static69.StaticField);
+        Static69.StaticMethod();
+
+        Static69 static69 = new Static69();
+        static69.NonStaticMethod2();
+        static69.NonStaticMethod();
     }
 }
