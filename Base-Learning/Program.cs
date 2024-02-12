@@ -1,5 +1,6 @@
 ﻿using Base_Learning.Abstract;
 using Base_Learning.ClassAndObject;
+using Base_Learning.ConstAndReadonly;
 using Base_Learning.Shapes;
 using Base_Learning.Statics;
 
@@ -43,7 +44,7 @@ class Program
         classandobj.Introduce();
     }
 
-    static void Main(string[] args)
+    static void Mainn(string[] args)
     {
         Console.WriteLine(Static69.StaticField);
         Static69.StaticMethod();
@@ -51,5 +52,11 @@ class Program
         Static69 static69 = new Static69();
         static69.NonStaticMethod2();
         static69.NonStaticMethod();
+    }
+
+    static void Main(string[] args)
+    {
+        ConstAndReadonly constAndReadonly = new ConstAndReadonly("Cook");
+        constAndReadonly.Testing();
     }
 }
