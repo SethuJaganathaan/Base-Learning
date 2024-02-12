@@ -1,0 +1,8 @@
+Instance is Like creating object from the class
+
+class is blueprint of the object
+object is like thinks we building inside the class
+
+example ToyCar
+before creating a to you need a blueprint that is class
+building the actual toy is object 
