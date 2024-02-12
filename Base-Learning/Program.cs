@@ -1,4 +1,5 @@
 ﻿using Base_Learning.Abstract;
+using Base_Learning.ClassAndObject;
 using Base_Learning.Shapes;
 using System.Drawing;
 
@@ -21,7 +22,7 @@ class Program
         }
     }
 
-    static void Main(string[] args)
+    static void maain(string[] args)
     {
         ARectangle aRect = new ARectangle(10, 20);
         ACircle aCircle = new ACircle(3);
@@ -32,5 +33,13 @@ class Program
             shape.PrintDescription();
             Console.WriteLine($"Area : {shape.CalculateArea()}");
         }
+    }
+
+    static void Main(string[] args)
+    {
+        ClassAndObj classandobj = new ClassAndObj("Shelby", 35);
+        ShapeArea shapearea = new ShapeArea(50,50);
+        Console.WriteLine($"Area of shape is {shapearea.AreaCalculate()}");
+        classandobj.Introduce();
     }
 }
