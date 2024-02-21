@@ -103,7 +103,7 @@ class Program
     }
 
     // primenumber check
-    static void Main(string[] args)
+    static void Masin(string[] args)
     {
         for(int i = 0; true; i++)
         {
@@ -120,6 +120,88 @@ class Program
             {
                 Console.WriteLine($"{number} is not a prime");
             }
+        }
+    }
+
+    // Reverse the string && palindrome
+    static void Mailn(string[] args)
+    {
+        Console.WriteLine("Enter the string");
+        string input = Console.ReadLine();
+
+        string reversedString = "";
+
+        for (int i = input.Length -1; i >= 0; i--)
+        {
+            reversedString += input[i];
+        }
+
+        if (reversedString == input)
+        {
+            Console.WriteLine("Its a palindrome");
+        }
+        else
+        {
+            Console.WriteLine("Its not a palindrome");
+        }
+        //Console.WriteLine($"Reversed string is {reversedString}");
+    }
+
+    //reverse the order of words in a given string
+    static void Maswin(string[] args)
+    {
+        Console.WriteLine("Enter the string of words");
+        string input = Console.ReadLine();
+
+        string[] words = input.Split(' ');
+        Array.Reverse(words);
+
+        string reversedWords = string.Join(" ", words);
+        Console.WriteLine($"Reversed string: {reversedWords}");
+    }
+
+    // How to reverse each word in a given string
+    static void Maewin(string[] args)
+    {
+        Console.WriteLine("Enter the string");
+        string input = Console.ReadLine();
+
+        string[] words = input.Split(' ');
+
+        for(int i = 0; i < words.Length; i++)
+        {
+            char[] chars = words[i].ToCharArray();
+            Array.Reverse(chars);
+
+            words[i] = new string(chars);
+        }
+
+        string reversedstring = string.Join(" ", words);
+        Console.WriteLine($"Reversed string is {reversedstring}");
+    }
+
+    // How to count the occurrence of each character in a string
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Enter teh string");
+        string input = Console.ReadLine();
+
+        Dictionary<char, int> charcount = new Dictionary<char, int>();
+        foreach(char c in input)
+        {
+            if (charcount.ContainsKey(c))
+            {
+                charcount[c]++;
+            }
+            else
+            {
+                charcount[c] = 1;
+            }
+        }
+
+        foreach (var pair in charcount)
+        {
+            Console.WriteLine($"Character '{pair.Key}' occurs {pair.Value} times.");
         }
     }
 }
