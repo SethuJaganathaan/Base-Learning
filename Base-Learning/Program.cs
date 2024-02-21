@@ -181,7 +181,7 @@ class Program
     }
 
     // How to count the occurrence of each character in a string
-    static void Main(string[] args)
+    static void Mainy(string[] args)
     {
         Console.WriteLine("Enter teh string");
         string input = Console.ReadLine();
@@ -202,6 +202,32 @@ class Program
         foreach (var pair in charcount)
         {
             Console.WriteLine($"Character '{pair.Key}' occurs {pair.Value} times.");
+        }
+    }
+
+    // remove duplicate from, string
+    static void Magin(string[] args)
+    {
+        Console.WriteLine("Enter the string");
+        string input = Console.ReadLine();
+
+        string res = new string(input.Distinct().ToArray());
+        Console.WriteLine($"Duplicates removed in {res}");
+    }
+
+    // How to find all possible substring of a given string
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Enter the string");
+        string input = Console.ReadLine();
+
+        for(int i = 0; i < input.Length; i++)
+        {
+            for(int j= i; j < input.Length; j++)
+            {
+                string substring = input.Substring(i, j - i);
+                Console.WriteLine(substring);
+            }
         }
     }
 }
