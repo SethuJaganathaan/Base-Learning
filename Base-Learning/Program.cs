@@ -1,4 +1,5 @@
 ﻿using Base_Learning.Abstract;
+using Base_Learning.Basic_Program;
 using Base_Learning.ClassAndObject;
 using Base_Learning.ConstAndReadonly;
 using Base_Learning.Shapes;
@@ -6,6 +7,7 @@ using Base_Learning.Statics;
 
 class Program
 {
+    // area of shape normal
     static void main(string[] args)
     {
         Rectangles rect = new Rectangles(10, 10);
@@ -22,7 +24,7 @@ class Program
             Console.WriteLine($"Area: {shape.CalculateArea()}");
         }
     }
-
+    // area of shape loop
     static void maain(string[] args)
     {
         ARectangle aRect = new ARectangle(10, 20);
@@ -43,7 +45,7 @@ class Program
         Console.WriteLine($"Area of shape is {shapearea.AreaCalculate()}");
         classandobj.Introduce();
     }
-
+    // static example
     static void Mainn(string[] args)
     {
         Console.WriteLine(Static69.StaticField);
@@ -54,9 +56,70 @@ class Program
         static69.NonStaticMethod();
     }
 
-    static void Main(string[] args)
+    //static and readonly example
+    static void Maiiin(string[] args)
     {
         ConstAndReadonly constAndReadonly = new ConstAndReadonly("Cook");
         constAndReadonly.Testing();
+    }
+
+    // remove duplicates
+    static void Madin(string[] args)
+    {
+        Console.WriteLine("Enter a string:");
+        string input = Console.ReadLine();
+        string result = new string(input.Distinct().ToArray());
+        Console.WriteLine("String with duplicates removed: " + result);
+    }
+
+    //VowelCheck
+    static void Maipn(string[] args)
+    {
+
+        Vowel vowel = new Vowel();
+
+        for(int i = 0; true; i++)
+        {
+            Console.WriteLine("Press Q to quit");
+            Console.WriteLine("Enter the letter");
+            char letter = Console.ReadKey().KeyChar;
+
+            if(letter == 'Q')
+            {
+                Console.WriteLine("Existing the program");
+                break;
+            }
+
+            if (vowel.VowelCheck(letter))
+            {
+                Console.WriteLine("Its a Vowel");
+            }
+            else
+            {
+                Console.WriteLine("Not a vowel");
+            }
+        }
+        
+    }
+
+    // primenumber check
+    static void Main(string[] args)
+    {
+        for(int i = 0; true; i++)
+        {
+            Console.WriteLine("Enter the number to check");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+            PrimeNumber prime = new PrimeNumber();
+
+            if(prime.PrimeCheck(number))
+            {
+                Console.WriteLine($"{number} is a prime");
+            }
+            else
+            {
+                Console.WriteLine($"{number} is not a prime");
+            }
+        }
     }
 }
