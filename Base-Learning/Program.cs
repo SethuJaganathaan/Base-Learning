@@ -6,6 +6,7 @@ using Base_Learning.DependencyInjection;
 using Base_Learning.Shapes;
 using Base_Learning.Statics;
 using Microsoft.Extensions.DependencyInjection;
+using static System.Formats.Asn1.AsnWriter;
 
 class Program
 {
@@ -234,7 +235,7 @@ class Program
     }
 
     //Dependancy injection
-    static void Main(string[] strings)
+    static void Maioin(string[] strings)
     {
         var serviceProvider = new ServiceCollection()
             .AddScoped<IDepend, Depend>()
@@ -275,7 +276,7 @@ class Program
         }
     }
 
-    static void Maipon(string[] args)
+    static void Main(string[] args)
     {
         var serviceProvider = new ServiceCollection()
             .AddScoped<IDepend, Depend>()
@@ -301,21 +302,23 @@ class Program
         }
 
         Console.WriteLine("Transient");
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
-            using (var scope = serviceProvider2.CreateScope())
+            //using (var scope2 = serviceProvider2.CreateScope())
             {
-                var service = scope.ServiceProvider.GetService<IDepend>();
+                //var service = scope2.ServiceProvider.GetService<IDepend>();
+                var service = serviceProvider2.GetService<IDepend>();
                 service.PrintMessgage();
             }
         }
 
         Console.WriteLine("Singleton");
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
-            using (var scope = serviceProvider3.CreateScope())
+            //using (var scope3 = serviceProvider3.CreateScope())
             {
-                var service = scope.ServiceProvider.GetService<IDepend>();
+                //var service = scope3.ServiceProvider.GetService<IDepend>();
+                var service = serviceProvider3.GetService<IDepend>();
                 service.PrintMessgage();
             }
         }
