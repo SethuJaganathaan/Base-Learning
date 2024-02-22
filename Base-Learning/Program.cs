@@ -2,8 +2,10 @@
 using Base_Learning.Basic_Program;
 using Base_Learning.ClassAndObject;
 using Base_Learning.ConstAndReadonly;
+using Base_Learning.DependencyInjection;
 using Base_Learning.Shapes;
 using Base_Learning.Statics;
+using Microsoft.Extensions.DependencyInjection;
 
 class Program
 {
@@ -41,7 +43,7 @@ class Program
     static void nain(string[] args)
     {
         ClassAndObj classandobj = new ClassAndObj("Shelby", 35);
-        ShapeArea shapearea = new ShapeArea(50,50);
+        ShapeArea shapearea = new ShapeArea(50, 50);
         Console.WriteLine($"Area of shape is {shapearea.AreaCalculate()}");
         classandobj.Introduce();
     }
@@ -78,13 +80,13 @@ class Program
 
         Vowel vowel = new Vowel();
 
-        for(int i = 0; true; i++)
+        for (int i = 0; true; i++)
         {
             Console.WriteLine("Press Q to quit");
             Console.WriteLine("Enter the letter");
             char letter = Console.ReadKey().KeyChar;
 
-            if(letter == 'Q')
+            if (letter == 'Q')
             {
                 Console.WriteLine("Existing the program");
                 break;
@@ -99,20 +101,20 @@ class Program
                 Console.WriteLine("Not a vowel");
             }
         }
-        
+
     }
 
     // primenumber check
     static void Masin(string[] args)
     {
-        for(int i = 0; true; i++)
+        for (int i = 0; true; i++)
         {
             Console.WriteLine("Enter the number to check");
             int number = Convert.ToInt32(Console.ReadLine());
 
             PrimeNumber prime = new PrimeNumber();
 
-            if(prime.PrimeCheck(number))
+            if (prime.PrimeCheck(number))
             {
                 Console.WriteLine($"{number} is a prime");
             }
@@ -131,7 +133,7 @@ class Program
 
         string reversedString = "";
 
-        for (int i = input.Length -1; i >= 0; i--)
+        for (int i = input.Length - 1; i >= 0; i--)
         {
             reversedString += input[i];
         }
@@ -168,7 +170,7 @@ class Program
 
         string[] words = input.Split(' ');
 
-        for(int i = 0; i < words.Length; i++)
+        for (int i = 0; i < words.Length; i++)
         {
             char[] chars = words[i].ToCharArray();
             Array.Reverse(chars);
@@ -187,7 +189,7 @@ class Program
         string input = Console.ReadLine();
 
         Dictionary<char, int> charcount = new Dictionary<char, int>();
-        foreach(char c in input)
+        foreach (char c in input)
         {
             if (charcount.ContainsKey(c))
             {
@@ -216,17 +218,105 @@ class Program
     }
 
     // How to find all possible substring of a given string
-    static void Main(string[] args)
+    static void Maoin(string[] args)
     {
         Console.WriteLine("Enter the string");
         string input = Console.ReadLine();
 
-        for(int i = 0; i < input.Length; i++)
+        for (int i = 0; i < input.Length; i++)
         {
-            for(int j= i; j < input.Length; j++)
+            for (int j = i; j < input.Length; j++)
             {
                 string substring = input.Substring(i, j - i);
                 Console.WriteLine(substring);
+            }
+        }
+    }
+
+    //Dependancy injection
+    static void Main(string[] strings)
+    {
+        var serviceProvider = new ServiceCollection()
+            .AddScoped<IDepend, Depend>()
+            .AddTransient<IDepend, Depend>()
+            //.AddTransient<IDepend>(_ => new Depend())
+            .AddSingleton<IDepend, Depend>()
+            //.AddSingleton<IDepend>(_ => new Depend())
+            .BuildServiceProvider();
+
+        Console.WriteLine("Scoped");
+        for (int i = 0; i < 3; i++)
+        {
+            using (var scope = serviceProvider.CreateScope())
+            {
+                var service = scope.ServiceProvider.GetService<IDepend>();
+                service.PrintMessgage();
+            }
+        }
+
+        Console.WriteLine("Transient");
+        for (int i = 0; i < 3; i++)
+        {
+            using (var scope = serviceProvider.CreateScope())
+            {
+                var service = scope.ServiceProvider.GetService<IDepend>();
+                service.PrintMessgage();
+            }
+        }
+
+        Console.WriteLine("Singleton");
+        for (int i = 0; i < 3; i++)
+        {
+            using (var scope = serviceProvider.CreateScope())
+            {
+                var service = scope.ServiceProvider.GetService<IDepend>();
+                service.PrintMessgage();
+            }
+        }
+    }
+
+    static void Maipon(string[] args)
+    {
+        var serviceProvider = new ServiceCollection()
+            .AddScoped<IDepend, Depend>()
+            .BuildServiceProvider();
+
+        var serviceProvider2 = new ServiceCollection()
+            .AddTransient<IDepend, Depend>()
+            .BuildServiceProvider();
+
+        var serviceProvider3 = new ServiceCollection()
+            .AddSingleton<IDepend, Depend>()
+            .BuildServiceProvider();
+
+
+        Console.WriteLine("Scoped");
+        for (int i = 0; i < 3; i++)
+        {
+            using (var scope = serviceProvider.CreateScope())
+            {
+                var service = scope.ServiceProvider.GetService<IDepend>();
+                service.PrintMessgage();
+            } 
+        }
+
+        Console.WriteLine("Transient");
+        for (int i = 0; i < 3; i++)
+        {
+            using (var scope = serviceProvider2.CreateScope())
+            {
+                var service = scope.ServiceProvider.GetService<IDepend>();
+                service.PrintMessgage();
+            }
+        }
+
+        Console.WriteLine("Singleton");
+        for (int i = 0; i < 3; i++)
+        {
+            using (var scope = serviceProvider3.CreateScope())
+            {
+                var service = scope.ServiceProvider.GetService<IDepend>();
+                service.PrintMessgage();
             }
         }
     }
