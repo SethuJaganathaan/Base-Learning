@@ -7,11 +7,10 @@ using Base_Learning.GenericCollection;
 using Base_Learning.Shapes;
 using Base_Learning.Statics;
 using Microsoft.Extensions.DependencyInjection;
-using static System.Formats.Asn1.AsnWriter;
 
 class Program
 {
-    // area of shape normal
+    #region area of shape normal
     static void main(string[] args)
     {
         Rectangles rect = new Rectangles(10, 10);
@@ -28,7 +27,9 @@ class Program
             Console.WriteLine($"Area: {shape.CalculateArea()}");
         }
     }
-    // area of shape loop
+    #endregion
+
+    #region area of shape loop
     static void maain(string[] args)
     {
         ARectangle aRect = new ARectangle(10, 20);
@@ -49,7 +50,9 @@ class Program
         Console.WriteLine($"Area of shape is {shapearea.AreaCalculate()}");
         classandobj.Introduce();
     }
-    // static example
+    #endregion
+
+    #region static example
     static void Mainn(string[] args)
     {
         Console.WriteLine(Static69.StaticField);
@@ -59,15 +62,17 @@ class Program
         static69.NonStaticMethod2();
         static69.NonStaticMethod();
     }
+    #endregion
 
-    //static and readonly example
+    #region static and readonly example
     static void Maiiin(string[] args)
     {
         ConstAndReadonly constAndReadonly = new ConstAndReadonly("Cook");
         constAndReadonly.Testing();
     }
+    #endregion
 
-    // remove duplicates
+    #region remove duplicates
     static void Madin(string[] args)
     {
         Console.WriteLine("Enter a string:");
@@ -75,8 +80,9 @@ class Program
         string result = new string(input.Distinct().ToArray());
         Console.WriteLine("String with duplicates removed: " + result);
     }
+    #endregion
 
-    //VowelCheck
+    #region VowelCheck
     static void Maipn(string[] args)
     {
 
@@ -105,8 +111,9 @@ class Program
         }
 
     }
+    #endregion
 
-    // primenumber check
+    #region primenumber check
     static void Masin(string[] args)
     {
         for (int i = 0; true; i++)
@@ -126,8 +133,9 @@ class Program
             }
         }
     }
+    #endregion
 
-    // Reverse the string && palindrome
+    #region Reverse the string && palindrome
     static void Mailn(string[] args)
     {
         Console.WriteLine("Enter the string");
@@ -150,8 +158,9 @@ class Program
         }
         //Console.WriteLine($"Reversed string is {reversedString}");
     }
+    #endregion
 
-    //reverse the order of words in a given string
+    #region reverse the order of words in a given string
     static void Maswin(string[] args)
     {
         Console.WriteLine("Enter the string of words");
@@ -163,8 +172,9 @@ class Program
         string reversedWords = string.Join(" ", words);
         Console.WriteLine($"Reversed string: {reversedWords}");
     }
+    #endregion
 
-    // How to reverse each word in a given string
+    #region How to reverse each word in a given string
     static void Maewin(string[] args)
     {
         Console.WriteLine("Enter the string");
@@ -183,8 +193,9 @@ class Program
         string reversedstring = string.Join(" ", words);
         Console.WriteLine($"Reversed string is {reversedstring}");
     }
+    #endregion
 
-    // How to count the occurrence of each character in a string
+    #region How to count the occurrence of each character in a string
     static void Mainy(string[] args)
     {
         Console.WriteLine("Enter teh string");
@@ -208,8 +219,9 @@ class Program
             Console.WriteLine($"Character '{pair.Key}' occurs {pair.Value} times.");
         }
     }
+    #endregion
 
-    // remove duplicate from, string
+    #region remove duplicate from, string
     static void Magin(string[] args)
     {
         Console.WriteLine("Enter the string");
@@ -218,8 +230,9 @@ class Program
         string res = new string(input.Distinct().ToArray());
         Console.WriteLine($"Duplicates removed in {res}");
     }
+    #endregion
 
-    // How to find all possible substring of a given string
+    #region How to find all possible substring of a given string
     static void Maoin(string[] args)
     {
         Console.WriteLine("Enter the string");
@@ -234,8 +247,9 @@ class Program
             }
         }
     }
+    #endregion
 
-    //Dependancy injection
+    #region Dependancy injection
     static void Maioin(string[] strings)
     {
         var serviceProvider = new ServiceCollection()
@@ -320,8 +334,9 @@ class Program
             service.PrintMessgage();
         }
     }
+    #endregion
 
-    // Generic List Collection
+    #region Generic List Collection   
     static void sMain(string[] args)
     {
         List<GModel> gModels = new List<GModel>();
@@ -348,6 +363,7 @@ class Program
         }
 
     }
+    #endregion
 
     #region Delegate
     delegate void MyDelegates(string Message);
