@@ -367,7 +367,7 @@ class Program
 
     #region Delegate
     delegate void MyDelegates(string Message);
-    static void Main(string[] args)
+    static void Mrain(string[] args)
     {
         MyDelegates delegateInstance = new MyDelegates(PrintMessage);
         delegateInstance("Hello Bruhh");
@@ -382,6 +382,32 @@ class Program
     static void PrintMessageDumps(string Message)
     {
         Console.WriteLine(Message);
+    }
+    #endregion
+
+    #region Delegates areacalculate
+    delegate float CalculateArea(float radius);
+    delegate float CalculateAreaRectangle(float length, float width);
+
+    static void Main(string[] args)
+    {
+        CalculateArea areas = new CalculateArea(Square);
+        float area = areas(3);
+        Console.WriteLine(area);
+
+        CalculateAreaRectangle rectangleArea = new CalculateAreaRectangle(Rectangle);
+        float areaRect = rectangleArea(2, 4);
+        Console.WriteLine(areaRect);
+    }
+
+    static float Square(float size)
+    {
+        return size * size;
+    }
+
+    static float Rectangle(float len, float wid)
+    {
+        return len * wid;
     }
     #endregion
 }
