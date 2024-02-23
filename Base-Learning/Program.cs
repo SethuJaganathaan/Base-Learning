@@ -3,6 +3,7 @@ using Base_Learning.Basic_Program;
 using Base_Learning.ClassAndObject;
 using Base_Learning.ConstAndReadonly;
 using Base_Learning.DependencyInjection;
+using Base_Learning.GenericCollection;
 using Base_Learning.Shapes;
 using Base_Learning.Statics;
 using Microsoft.Extensions.DependencyInjection;
@@ -276,7 +277,7 @@ class Program
         }
     }
 
-    static void Main(string[] args)
+    static void Marin(string[] args)
     {
         var serviceProvider = new ServiceCollection()
             .AddScoped<IDepend, Depend>()
@@ -298,7 +299,7 @@ class Program
             {
                 var service = scope.ServiceProvider.GetService<IDepend>();
                 service.PrintMessgage();
-            } 
+            }
         }
 
         Console.WriteLine("Transient");
@@ -315,12 +316,56 @@ class Program
         Console.WriteLine("Singleton");
         for (int i = 0; i < 4; i++)
         {
-            //using (var scope3 = serviceProvider3.CreateScope())
-            {
-                //var service = scope3.ServiceProvider.GetService<IDepend>();
-                var service = serviceProvider3.GetService<IDepend>();
-                service.PrintMessgage();
-            }
+            var service = serviceProvider3.GetService<IDepend>();
+            service.PrintMessgage();
         }
     }
+
+    // Generic List Collection
+    static void sMain(string[] args)
+    {
+        List<GModel> gModels = new List<GModel>();
+
+        gModels.Add(new GModel { Name = "Luffy", Email = "luffy@gmail.com" });
+        gModels.Add(new GModel { Name = "Zoro", Email = "zoro@gmail.com" });
+        gModels.Add(new GModel { Name = "Sanji", Email = "sanji@gmail.com" });
+        gModels.Add(new GModel { Name = "Dummy", Email = "dummy@gmail.com" });
+        gModels.Add(new GModel { Name = "Test", Email = "test@gmail.com" });
+
+        foreach (var lists in gModels)
+        {
+            Console.WriteLine($"{lists.Name} and {lists.Email}");
+        }
+
+        Console.WriteLine("Update name for Index [3] : ");
+        gModels[3].Name = Console.ReadLine();
+        Console.WriteLine($"{gModels[3].Name} and {gModels[3].Email}");
+
+        gModels.RemoveAt(4);
+        foreach (var lists in gModels)
+        {
+            Console.WriteLine($"{lists.Name} and {lists.Email}");
+        }
+
+    }
+
+    #region Delegate
+    delegate void MyDelegates(string Message);
+    static void Main(string[] args)
+    {
+        MyDelegates delegateInstance = new MyDelegates(PrintMessage);
+        delegateInstance("Hello Bruhh");
+        MyDelegates delegatess = new MyDelegates(PrintMessageDumps);
+        delegatess("Hello Sethu");
+
+    }
+    static void PrintMessage(string Message)
+    {
+        Console.WriteLine(Message);
+    }
+    static void PrintMessageDumps(string Message)
+    {
+        Console.WriteLine(Message);
+    }
+    #endregion
 }
